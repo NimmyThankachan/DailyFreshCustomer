@@ -39,11 +39,11 @@ public class CustomerService {
 	}
 
 	public List<Customer> getAllCustomersByLocation(String location) {
-		return repo.findAll().stream().filter(c -> location.equalsIgnoreCase(location)).collect(Collectors.toList());
+		return repo.findByLocation_Name(location).stream().filter(c -> location.equalsIgnoreCase(location)).collect(Collectors.toList());
 	}
 
 	public List<Customer> getAllCustomersByCity(String city) {
-		return repo.findAll().stream().filter(c -> city.equalsIgnoreCase(city)).collect(Collectors.toList());
+		return repo.findByCity_Name(city).stream().filter(c -> city.equalsIgnoreCase(city)).collect(Collectors.toList());
 	}
 
 }

@@ -46,7 +46,7 @@ public class CustomerController {
 	}
 
 	@PutMapping(value = "/modify")
-	public ResponseEntity<CustomerUpdateResponse> updateSupplier(@RequestBody CustomerUpdateRequest request)
+	public ResponseEntity<CustomerUpdateResponse> updateCustomer(@RequestBody CustomerUpdateRequest request)
 			throws CustomerNotFoundException {
 		CustomerUpdateResponse response = new CustomerUpdateResponse();
 
@@ -66,8 +66,8 @@ public class CustomerController {
 		}
 	}
 
-	@GetMapping(value = "/find/{sid}")
-	public ResponseEntity<CustomerSearchResponse> searchVisitor(@PathVariable(name = "cid") int customerId)
+	@GetMapping(value = "/find/{cid}")
+	public ResponseEntity<CustomerSearchResponse> searchCustomer(@PathVariable(name = "cid") int customerId)
 			throws Exception {
 		Customer customer = service.searchCustomer(customerId);
 		CustomerSearchResponse response = new CustomerSearchResponse();
@@ -83,14 +83,38 @@ public class CustomerController {
 	}
 
 	@GetMapping(value = "/showAll", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<CustomerShowAllResponse> getAllVisitors() throws CustomerNotFoundException {
+	public ResponseEntity<CustomerShowAllResponse> getAllCustomers() throws CustomerNotFoundException {
 		List<Customer> customers = service.getAllCustomers();
 		CustomerShowAllResponse response = new CustomerShowAllResponse();
 		response.setStatusCode(200);
 		response.setDescription("All customers Fetched");
-		response.setCustomer(customers);
+		response.setCustomers(customers);
 
 		return ResponseEntity.ok(response);
 	}
+	
+	@GetMapping(value = "/findByLoc/{location}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<CustomerShowAllResponse> getAllCustomersByLocation(@PathVariable (name="location") String loc)  {
+		List<Customer> customers = service.getAllCustomersByLocation(loc);
+		CustomerShowAllResponse response = new CustomerShowAllResponse();
+		response.setStatusCode(200);
+		response.setDescription("All customers Fetched");
+		response.setCustomers(customers);
+
+		return ResponseEntity.ok(response);
+	}
+
+	
+	@GetMapping(value = "/findByCity/{cityName}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<CustomerShowAllResponse> getAllCustomersByCity(@PathVariable (name="cityName") String city)  {
+		List<Customer> customers = service.getAllCustomersByCity(city);
+		CustomerShowAllResponse response = new CustomerShowAllResponse();
+		response.setStatusCode(200);
+		response.setDescription("All customers Fetched");
+		response.setCustomers(customers);
+
+		return ResponseEntity.ok(response);
+	}
+
 
 }

@@ -25,9 +25,9 @@ public class Contact {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	@Column(name="contact_id",nullable=false)
 	@EqualsAndHashCode.Include
-	private String id;
+	private int contactId;
 
 	@Column
 	@NotBlank(message = "Name is mandatory")

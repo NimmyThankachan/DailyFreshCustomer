@@ -9,7 +9,7 @@ import com.training.model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-	List<Customer> findByLocation(String location);
+	List<Customer> findByLocation_Name(String location);
 
-	List<Customer> findByCity(String city);
+	List<Customer> findByCity_Name(String city);
 }

@@ -23,9 +23,9 @@ public class Location {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	@Column(name="location_id",nullable=false)
 	@EqualsAndHashCode.Include
-	private String id;
+	private int locationId;
 
 	@Column
 	@NotBlank(message = "Location name is mandatory")

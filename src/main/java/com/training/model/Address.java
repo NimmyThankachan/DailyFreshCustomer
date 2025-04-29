@@ -26,9 +26,9 @@ public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
 	@EqualsAndHashCode.Include
-	private String id;
+	@Column(name = "address_id",nullable=false)
+	private int addressId;
 
 	@Column
 	@NotBlank(message = "Name is mandatory")

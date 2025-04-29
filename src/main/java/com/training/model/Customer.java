@@ -49,5 +49,8 @@ public class Customer {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "location_id", nullable = false)
 	private Location location;
+	
+	@Column(name = "reward_points")
+    private int rewardPoints;
 
 }
